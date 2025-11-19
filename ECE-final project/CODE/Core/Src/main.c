@@ -115,11 +115,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     if(flag)
     {
       flag = 0;
       FSM();
     }
+    
     plt_CanProcessRxMsgs();
     /* USER CODE END WHILE */
 

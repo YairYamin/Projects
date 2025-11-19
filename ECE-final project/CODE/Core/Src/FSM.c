@@ -68,10 +68,10 @@ void FSM_Stage_1()
 {
     FSM_InAnyStage();
     opr_Stage_Leds(Stage1); // Set the LED for Stage 1
+
     printf("Stage 1: Initializing\r\n");
-    Sensors_Ok = opr_SensorsCheck(); // Check if sensors are calibrated  
     Communication_Ok = (opr_CommunicationCheck()>=100) ? 1:0; // Check if communication is OK 
-    
+    Sensors_Ok = opr_SensorsCheck(); // Check if sensors are calibrated  
 
     if(Sensors_Ok && Communication_Ok) {
         (*FSM_Stage) = Stage2; // Move to Stage 2 if sensors and communication are OK
@@ -89,6 +89,7 @@ void FSM_Stage_2()
 {
     FSM_InAnyStage();
     opr_Stage_Leds(Stage2);
+
     InvertersInitFC();
     inv_CyclicTransmission();
     R2D_Pressed = &pMainDB->dashboard_node->R2D;
@@ -173,6 +174,7 @@ void FSM_InAnyStage()
     inv_CheckInvertersError();
     opr_BrakeLight();
     FSM_Error_Handler();
+    
 }
 
 /**
